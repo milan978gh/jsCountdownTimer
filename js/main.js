@@ -23,5 +23,13 @@ const weekdays = [
 ];
 
 
+const giveaway = document.querySelector('.giveaway');
+const deadline = document.querySelector('.deadline');
+const items = document.querySelectorAll('.deadline-format h4');
+
+let futureDate = new Date(2020, 11, 31, 20, 0, 0);
+// console.log(futureDate);
+
+giveaway.textContent = `giveaway onds on ${futureDate}`;
 
 
