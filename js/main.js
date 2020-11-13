@@ -24,7 +24,14 @@ const weekdays = [
 const giveaway = document.querySelector('.giveaway');
 const deadline = document.querySelector('.deadline');
 const items = document.querySelectorAll('.deadline-format h4');
-let futureDate = new Date(2020, 10, 20, 20, 0, 0);
+
+let tempDate = new Date();
+let tempYear = tempDate.getFullYear();
+let tempMonth = tempDate.getMonth();
+let tempDay = tempDate.getDate();
+
+// let futureDate = new Date(2020, 10, 20, 20, 0, 0);
+let futureDate = new Date(tempYear, tempMonth, tempDay + 1, 20, 0, 0);
 
 // giveaway.textContent = `giveaway ends on ${futureDate}`;
 
@@ -67,9 +74,9 @@ function getRemainingTime() {
   items.forEach(function (item, index) {
     item.innerHTML = format(values[index]);
   });
-  if(t<0){
-    clearInterval(countdown)
-    deadline.innerHTML=`<h4 class="expired">sorry, you'r too late.</h4>`
+  if (t < 0) {
+    clearInterval(countdown);
+    deadline.innerHTML = `<h4 class="expired">sorry, you'r too late.</h4>`;
   }
 }
 
