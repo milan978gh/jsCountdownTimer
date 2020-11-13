@@ -40,9 +40,9 @@ const date = futureDate.getDate();
 const month = months[futureDate.getMonth()];
 const year = futureDate.getFullYear();
 const hours = futureDate.getHours();
-const minutes = futureDate.getMinutes();
+const minutes = formatSingleDigit(futureDate.getMinutes());
 
-giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year}, ${hours}:0${minutes} hours.`;
+giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year}, ${hours}:${minutes} hours.`;
 
 // future time in ms
 const futureTime = futureDate.getTime();
@@ -64,15 +64,10 @@ function getRemainingTime() {
   const values = [days, hours, minutes, seconds];
 
 
-  function format(item) {
-    if (item < 10) {
-      return item = `0${item}`;
-    }
-    return item;
-  }
+  
 
   items.forEach(function (item, index) {
-    item.innerHTML = format(values[index]);
+    item.innerHTML = formatSingleDigit(values[index]);
   });
   if (t < 0) {
     clearInterval(countdown);
@@ -83,3 +78,10 @@ function getRemainingTime() {
 // countdown
 let countdown = setInterval(getRemainingTime, 1000);
 getRemainingTime();
+
+function formatSingleDigit(item) {
+  if (item < 10) {
+    return item = `0${item}`;
+  }
+  return item;
+}
